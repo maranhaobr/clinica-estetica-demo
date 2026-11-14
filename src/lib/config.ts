@@ -1,7 +1,7 @@
 export const clinic = {
   name: 'Lumina Estética Avançada', logo: 'lumina', slogan: 'Sua beleza, sua essência.',
   colors: { cream: '#FAF8F5', beige: '#E8DDD1', rose: '#D9B8AD', brown: '#5B463D', ink: '#292929' },
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '', phone: '', address: 'Endereço ilustrativo • sua cidade',
+  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP ?? '5585991331884').replace(/\D/g, ''), phone: '', address: 'Endereço ilustrativo • sua cidade',
   social: { instagram: '' }, hours: 'Segunda a sexta, 9h às 19h • Sábado, 9h às 13h',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
 };

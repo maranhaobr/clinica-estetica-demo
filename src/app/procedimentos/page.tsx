@@ -1,0 +1,5 @@
+import type { Metadata } from 'next';
+import { procedures } from '@/lib/config';
+import { ProcedureCard, SectionHeading, ContactSection } from '@/components/ui';
+export const metadata: Metadata = {title:'Procedimentos',description:'Explore cuidados faciais, corporais e de bem-estar. Procedimentos ilustrativos da Lumina.'};
+export default function Procedures(){return <><section className="page-intro section"><span className="eyebrow">UM CUIDADO PARA CADA MOMENTO</span><h1>Escolha olhar<br/>para <em>você.</em></h1><p>Conheça nossas propostas de autocuidado. A escolha de qualquer procedimento começa com uma avaliação individual.</p></section><section className="section all-procedures"><SectionHeading eyebrow="FACIAL · CORPORAL · BEM-ESTAR" title="Nossos cuidados"/><div className="procedure-grid">{procedures.map((p,i)=><ProcedureCard key={p.slug} procedure={p} index={i}/>)}</div><p className="disclaimer">Conteúdo demonstrativo e informativo. Indicações, restrições e resultados variam de pessoa para pessoa. Consulte um profissional habilitado.</p></section><ContactSection/></>;}

@@ -1,0 +1,16 @@
+export const clinic = {
+  name: 'Lumina Estética Avançada', logo: 'lumina', slogan: 'Sua beleza, sua essência.',
+  colors: { cream: '#FAF8F5', beige: '#E8DDD1', rose: '#D9B8AD', brown: '#5B463D', ink: '#292929' },
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '', phone: '', address: 'Endereço ilustrativo • sua cidade',
+  social: { instagram: '' }, hours: 'Segunda a sexta, 9h às 19h • Sábado, 9h às 13h',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
+};
+export const procedures = [
+  { slug: 'limpeza-de-pele', name: 'Limpeza de pele', category: 'Cuidado facial', image: '/images/facial.jpg', description: 'Um novo começo para a sua pele. Um cuidado delicado para uma sensação de frescor e limpeza.', objective: 'Cuidar da higiene da pele e complementar sua rotina de autocuidado.', detail: 'O cuidado pode incluir higienização, esfoliação e etapas definidas após avaliação individual. A indicação e os produtos dependem das características da pele.' },
+  { slug: 'hidratacao-facial', name: 'Hidratação facial', category: 'Cuidado facial', image: '/images/skin.jpg', description: 'Uma pausa para nutrir, acolher e devolver à pele a sensação de conforto.', objective: 'Oferecer um cuidado voltado ao conforto e à hidratação da pele.', detail: 'A seleção dos cosméticos considera o tipo de pele e sua rotina. Sensibilidades e uso de produtos devem ser informados durante a avaliação.' },
+  { slug: 'peeling-facial', name: 'Peeling facial', category: 'Cuidado facial', image: '/images/peeling.jpg', description: 'A atenção que sua pele merece, em um protocolo pensado especialmente para você.', objective: 'Explorar cuidados de renovação superficial conforme a avaliação profissional.', detail: 'Existem diferentes abordagens de peeling. A escolha, os cuidados posteriores e possíveis restrições devem ser discutidos com um profissional habilitado.' },
+  { slug: 'drenagem-linfatica', name: 'Drenagem linfática', category: 'Cuidado corporal', image: '/images/body.jpg', description: 'Toques suaves e um tempo só seu. Cuidado corporal com atenção a cada detalhe.', objective: 'Proporcionar uma experiência de cuidado corporal com manobras suaves.', detail: 'A técnica e a indicação dependem de avaliação. Informe seu histórico de saúde, condições existentes e procedimentos recentes antes de uma sessão.' },
+  { slug: 'massagem-relaxante', name: 'Massagem relaxante', category: 'Bem-estar', image: '/images/massage.jpg', description: 'Desacelere. Um convite para reconectar corpo, mente e bem-estar.', objective: 'Criar um momento de pausa e relaxamento na rotina.', detail: 'A intensidade dos movimentos e as áreas trabalhadas são combinadas individualmente. Informe desconfortos, sensibilidades ou restrições.' },
+  { slug: 'tratamentos-corporais', name: 'Tratamentos corporais', category: 'Cuidado corporal', image: '/images/ritual.jpg', description: 'Cuidado com o corpo que respeita seu ritmo, seus objetivos e sua individualidade.', objective: 'Construir uma proposta de autocuidado corporal individualizada.', detail: 'As possibilidades de cuidado são discutidas na avaliação. Nenhum protocolo deve ser escolhido sem considerar suas necessidades e eventuais contraindicações.' },
+];
+export type Procedure = (typeof procedures)[number];

@@ -23,7 +23,7 @@ Em Workers & Pages, crie um **Worker** conectado ao mesmo repositório da landin
 | Campo | Valor |
 | --- | --- |
 | Nome | `clinica-estetica-platform` |
-| Branch de produção | `main` |
+| Branch de produção | `feat/add-admin-dashboards` |
 | Diretório raiz do projeto | `apps/platform` |
 | Comando de build | `npm run build:cf` |
 | Comando de deploy | `npm run deploy:cf` |
@@ -46,7 +46,7 @@ As variáveis NEXT_PUBLIC são incorporadas à build. Alterações exigem nova b
 
 ## Primeiro acesso em workers.dev
 
-O primeiro deploy gera uma URL semelhante a `https://clinica-estetica-platform.SEUSUBDOMINIO.workers.dev`. O subdomínio da conta só é conhecido no momento da publicação. Não há wildcard de tenants nem bypass para workers.dev.
+O painel está publicado em https://clinica-estetica-platform.regisousa7.workers.dev. Esse hostname está verificado e associado à Lumina no Supabase. Não há wildcard de tenants nem bypass para workers.dev.
 
 Após o deploy, copie apenas o hostname real, sem `https://`, porta ou caminho. No SQL Editor do projeto Supabase, como operador autorizado, execute substituindo o marcador:
 
@@ -109,4 +109,8 @@ Não foram adicionados buckets R2, banco Cloudflare, imagens pagas ou bindings d
 - Runtime local workerd: `/login` respondeu 200 com formulário e cache privado; `/painel` sem sessão respondeu 307 para login; CSS respondeu 200 com cache imutável.
 - 15 testes, lint e TypeScript incluído na build: aprovados.
 - Auditoria npm: zero vulnerabilidades após override restrito de glob 14.0.6 no adaptador.
-- Publicação real, variáveis da conta Cloudflare e hostname definitivo: ainda não executados. O cadastro do hostname e dos callbacks ocorre depois que a Cloudflare informar a URL pública.
+- Publicação real: concluída em `https://clinica-estetica-platform.regisousa7.workers.dev`.
+- Variáveis públicas Supabase configuradas em runtime e no ambiente de build; Node de build 22.16.0.
+- Repositório GitHub conectado ao Worker, branch `feat/add-admin-dashboards`, raiz `apps/platform`, comandos `build:cf` e `deploy:cf`. Pushes nessa branch iniciam builds de produção; builds de preview estão desativadas.
+- Hostname associado à Lumina; Site URL e callback HTTPS configurados no Supabase, mantendo os callbacks locais.
+- Validação HTTPS em produção: `/login` respondeu 200 e `/painel` sem sessão respondeu 307 para `/login`, ambos com cache privado. O acesso com senha deve ser validado pelo administrador usando sua própria conta.

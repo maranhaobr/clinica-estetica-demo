@@ -69,7 +69,7 @@ A origem de recuperação é construída apenas após validar o Host contra um d
 
 ## Domínios e deploy
 
-O painel requer um runtime Next.js com servidor. `next start` após `npm run build` atende em Node; um deploy Cloudflare deste painel exige seu próprio projeto e adaptação SSR, a ser validada antes de produção. O site institucional continua usando Workers Static Assets/Pages.
+O painel tem configuração própria para Cloudflare Workers com OpenNext. Consulte `CLOUDFLARE-WORKERS.md` nesta pasta para comandos, variáveis e cadastro do hostname workers.dev. O site institucional mantém seu deploy independente na raiz. `next start` após `npm run build` continua disponível para hospedar em Node.
 
 Para domínio personalizado: valide a propriedade com desafio DNS controlado pelo operador, configure CNAME/roteamento para a aplicação, aguarde certificado TLS válido e só depois marque `tenant_domains.verification_status='verified'`. O código não verifica DNS automaticamente. A infraestrutura deve preservar o Host original verificado e não reescrevê-lo com valores arbitrários enviados pelo cliente. Registre cada domínio no Supabase Auth como redirect permitido. Desative cache público/CDN nas respostas autenticadas e preserve todos os Set-Cookie. Cada clínica pode ter vários domínios, apenas um primário.
 
@@ -130,3 +130,7 @@ Validação da etapa 2: 15 testes, lint e build de produção aprovados. Revisã
 O painel requer Node.js 22.16 ou superior, incluindo o Supabase SDK instalado. Os scripts `npm run dev` e `npm run build` verificam a versão. Neste workspace, se o terminal estiver no Node 20, eles usam automaticamente `.tools/node.exe` na raiz, quando disponível e compatível. Nenhuma configuração global do Windows é alterada. Em outro computador ou deploy, instale Node 22.16+ antes de executar `npm ci`.
 
 Tailwind CSS e o plugin PostCSS estão fixados em 4.1.18 para evitar o carregamento CommonJS/ESM incompatível observado no modo dev com Tailwind 4.3. Não edite arquivos de node_modules manualmente. Após atualizar dependências, encerre o servidor anterior e inicie `npm run dev` novamente.
+
+## Cloudflare Workers preparado
+
+Use `npm run build:cf`, `npm run check:cf` e depois `npm run deploy:cf` para publicar quando a conta estiver autenticada. O primeiro deploy usa workers.dev. O guia completo está em [CLOUDFLARE-WORKERS.md](./CLOUDFLARE-WORKERS.md). Nenhum deploy remoto foi realizado nesta preparação.

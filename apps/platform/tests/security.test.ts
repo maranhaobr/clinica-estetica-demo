@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {authorize,normalizeHost,hasFeature,loginSchema,passwordSchema} from '../src/lib/security';
+test('normalizes an exact host and strips the port',()=>{assert.equal(normalizeHost('LUMINA.localhost:3002'),'lumina.localhost');});
+test('rejects ambiguous or forged host syntax',()=>{for(const h of ['','a.com,evil.com','https://a.com','a.com/','a.com@evil','a..com','-a.com','a.com:99999','a.com\r\nHost: evil'])assert.throws(()=>normalizeHost(h));});
+test('permits each authorized clinic role',()=>{for(const role of ['owner','admin','viewer'])assert.equal(authorize({id:'a',status:'active'},{tenant_id:'a',user_id:'u',role},'u'),role);});
+test('rejects cross-tenant, wrong user, inactive clinic and missing membership',()=>{for(const member of [null,{tenant_id:'b',user_id:'u',role:'owner'},{tenant_id:'a',user_id:'other',role:'owner'}])assert.throws(()=>authorize({id:'a',status:'active'},member,'u'));assert.throws(()=>authorize({id:'a',status:'inactive'},{tenant_id:'a',user_id:'u',role:'owner'},'u'));});
+test('unknown role does not grant access',()=>assert.throws(()=>authorize({id:'a',status:'active'},{tenant_id:'a',user_id:'u',role:'global_admin'},'u')));
+test('plans and explicit feature denial fail closed',()=>{assert.equal(hasFeature('essential','analytics'),false);assert.equal(hasFeature('performance','analytics'),true);assert.equal(hasFeature('performance','analytics',false),false);assert.equal(hasFeature('unknown','support'),false);assert.equal(hasFeature('essential','support'),true);});
+test('validates credentials and password lengths',()=>{assert.equal(loginSchema.safeParse({email:'not-email',password:'x'}).success,false);assert.equal(passwordSchema.safeParse('short').success,false);assert.equal(passwordSchema.safeParse('long-passphrase-123').success,true);});

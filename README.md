@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Abra http://localhost:3000. Validações:
+Abra http://localhost:3001. Validações:
 
 ```sh
 npm run lint
@@ -19,7 +19,7 @@ npm run typecheck
 npm run build
 ```
 
-A build gera `out/`. Para visualizar a exportação, execute `npm run preview` e abra http://localhost:3000. O servidor incluído serve apenas para prévia local. `next start` não atende uma exportação estática.
+A build gera `out/`. Para visualizar a exportação, execute `npm run preview` e abra http://localhost:3001. O servidor incluído serve apenas para prévia local. `next start` não atende uma exportação estática.
 
 Neste ambiente foi necessário baixar Node e npm para `.tools/` (ignorados no Git). Alternativa no PowerShell:
 

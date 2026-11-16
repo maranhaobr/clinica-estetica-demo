@@ -1,0 +1,2 @@
+'use client';
+export default function ErrorPage({reset}:{reset:()=>void}){return <section className="auth"><h1>Acesso indisponível</h1><p>Não foi possível validar seu acesso. Confira a configuração do Supabase, o domínio e o vínculo do usuário com a clínica. Se o problema persistir, fale com o administrador.</p><button onClick={reset}>Tentar novamente</button><p><a href="/login">Voltar ao login</a></p></section>;}
